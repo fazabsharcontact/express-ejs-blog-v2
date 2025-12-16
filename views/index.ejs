@@ -1,0 +1,60 @@
+<%- include("partials/header", { title: "Home" }) %>
+
+<div class="max-w-4xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">All Posts</h2>
+    <a
+      href="/new"
+      class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+    >
+      + New Post
+    </a>
+  </div>
+
+  <% if (posts.length === 0) { %>
+    <div class="bg-white p-6 rounded shadow text-center text-gray-500">
+      No posts yet.
+    </div>
+  <% } %>
+
+  <div class="space-y-6">
+    <% posts.forEach(post => { %>
+      <article class="bg-white p-6 rounded-lg shadow border border-gray-100">
+        
+        <h3 class="text-xl font-semibold text-gray-900">
+          <%= post.title %>
+        </h3>
+
+        <p class="text-gray-700 mt-3 leading-relaxed">
+          <%= post.content %>
+        </p>
+
+        <div class="mt-5 flex items-center gap-4">
+          <a
+            href="/posts/<%= post.id %>/edit"
+            class="text-blue-600 hover:text-blue-800 font-medium"
+          >
+            ✏️ Edit
+          </a>
+
+          <form
+            action="/posts/<%= post.id %>/delete"
+            method="POST"
+            onsubmit="return confirm('Yakin mau hapus post ini?')"
+          >
+            <button
+              class="text-red-600 hover:text-red-800 font-medium"
+            >
+              🗑 Delete
+            </button>
+          </form>
+        </div>
+
+      </article>
+    <% }) %>
+  </div>
+
+</div>
+
+<%- include("partials/footer") %>
