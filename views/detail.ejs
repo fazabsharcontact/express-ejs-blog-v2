@@ -1,0 +1,21 @@
+<%- include("partials/header", { title: "post.title" }) %>
+
+<div class="max-w-3xl mx-auto">
+    <article class="bg-white p-6 rounded-lg shadow border border-gray-100">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">
+            <%= post.title %>
+        </h1>
+
+        <p class="text-gray-700 leading-relaxed"> 
+            <%= post.content %>
+        </p>
+
+        <div class="mt-4">
+            <a href="/" class="text-blue-600 hover:underline">
+                ← Back to Home
+            </a>
+        </div>
+    </article>
+</div>
+
+<%- include("partials/footer") %>
